@@ -13,16 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.mkh.gradle
+package com.github.khalid64927.gradle.utils
 
-import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.api.artifacts.VersionCatalog
+import org.gradle.api.artifacts.VersionCatalogsExtension
+import org.gradle.kotlin.dsl.getByType
 
-class JacocoLogPlugin : Plugin<Project> {
-
-    override fun apply(target: Project) {
-        with(target) {
-            pluginManager.apply("org.barfuin.gradle.jacocolog")
-        }
-    }
-}
+val Project.libs
+    get(): VersionCatalog = extensions.getByType<VersionCatalogsExtension>().named("libs")

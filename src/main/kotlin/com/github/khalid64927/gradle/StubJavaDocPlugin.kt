@@ -13,29 +13,33 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.mkh.gradle
+package com.github.khalid64927.gradle
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.api.tasks.testing.AbstractTestTask
-import org.gradle.api.tasks.testing.logging.TestExceptionFormat
-import org.gradle.api.tasks.testing.logging.TestLogEvent
+import org.gradle.api.publish.PublishingExtension
+import org.gradle.api.publish.maven.MavenPublication
+import org.gradle.jvm.tasks.Jar
+import org.gradle.kotlin.dsl.configure
+import org.gradle.kotlin.dsl.register
 import org.gradle.kotlin.dsl.withType
 
-class TestsReportPlugin : Plugin<Project> {
+class StubJavaDocPlugin : Plugin<Project> {
 
     override fun apply(target: Project) {
-        target.tasks.withType<AbstractTestTask> {
-            testLogging {
-                exceptionFormat = TestExceptionFormat.FULL
-                events = setOf(
-                    TestLogEvent.SKIPPED,
-                    TestLogEvent.PASSED,
-                    TestLogEvent.FAILED,
-                )
-                showStandardStreams = true
+        with(target.plugins) {
+            apply("org.gradle.maven-publish")
+        }
+
+        val javadocJar = target.tasks.register("javadocJar", Jar::class) {
+            archiveClassifier.set("javadoc")
+        }
+
+        target.configure<PublishingExtension> {
+            publications.withType<MavenPublication> {
+                // Stub javadoc.jar artifact
+                artifact(javadocJar.get())
             }
-            outputs.upToDateWhen { false }
         }
     }
 }

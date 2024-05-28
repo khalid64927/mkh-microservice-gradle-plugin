@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.mkh.gradle.utils
+package com.github.khalid64927.gradle.utils
 
 import org.gradle.api.GradleException
 import org.gradle.api.JavaVersion

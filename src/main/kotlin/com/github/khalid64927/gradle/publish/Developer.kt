@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.mkh.gradle.publish
+package com.github.khalid64927.gradle.publish
 
 import org.gradle.api.GradleException
 

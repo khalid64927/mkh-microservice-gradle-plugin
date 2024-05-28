@@ -52,7 +52,7 @@ configure<SpotlessExtension>{
 }
 
 
-group = "com.mkh.gradle"
+group = "com.github.khalid64927.gradle"
 version = "1.0.0-SNAPSHOT"
 
 
@@ -102,6 +102,16 @@ dependencies {
     api(libs.graalVMGradlePlugin)
 }
 
+gradlePlugin {
+    plugins {
+        create("microservice-plugin") {
+            id = "com.github.khalid64927.gradle.microservice"
+            implementationClass = "com.github.khalid64927.gradle.MKHMicroservicePlugin"
+        }
+
+    }
+}
+
 
 publishing {
     publications {
@@ -109,14 +119,14 @@ publishing {
             from(components["java"])
 
             pom {
-                name.set("khalid-gradle-plugin")
+                name.set("mkh-microservice-gradle-plugin")
                 description.set("This is a Gradle plugin with common build logic for all KMP libraries in my open source repo.")
-                url.set("https://github.com/khalid64927/microservice-gradle-plugin")
+                url.set("https://github.com/khalid64927/mkh-microservice-gradle-plugin")
                 licenses {
                     license {
                         name.set("Apache-2.0")
                         distribution.set("repo")
-                        url.set("https://github.com/khalid64927/microservice-gradle-plugin/blob/master/LICENSE.md")
+                        url.set("https://github.com/khalid64927/mkh-microservice-gradle-plugin/blob/master/LICENSE.md")
                     }
                 }
 
@@ -129,9 +139,9 @@ publishing {
                 }
 
                 scm {
-                    connection.set("scm:git:ssh://github.com/khalid64927/microservice-gradle-plugin.git")
-                    developerConnection.set("scm:git:ssh://github.com/khalid64927/microservice-gradle-plugin.git")
-                    url.set("https://github.com/khalid64927/khalid-gradle-plugin")
+                    connection.set("scm:git:ssh://github.com/khalid64927/mkh-microservice-gradle-plugin.git")
+                    developerConnection.set("scm:git:ssh://github.com/khalid64927/mkh-microservice-gradle-plugin.git")
+                    url.set("https://github.com/khalid64927/mkh-microservice-gradle-plugin")
                 }
             }
         }

@@ -13,23 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.mkh.gradle
+package com.github.khalid64927.gradle
 
-import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
-class DepVersionUpdateCheckPlugin : Plugin<Project> {
+class JacocoLogPlugin : Plugin<Project> {
+
     override fun apply(target: Project) {
         with(target) {
-            pluginManager.apply("com.github.ben-manes.versions")
-            tasks.register("dependencyUpdates", DependencyUpdatesTask::class.java) {
-                // optional parameters
-                checkForGradleUpdate = true
-                outputFormatter = "html"
-                outputDir = "build/dependencyUpdates"
-                reportfileName = "report"
-            }
+            pluginManager.apply("org.barfuin.gradle.jacocolog")
         }
     }
 }

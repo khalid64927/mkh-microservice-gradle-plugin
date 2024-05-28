@@ -13,19 +13,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.mkh.gradle
+package com.github.khalid64927.gradle.publish
 
+import io.github.gradlenexus.publishplugin.NexusPublishExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.kotlin.dsl.configure
+import java.net.URI
 
-class GraalVMPlugin : Plugin<Project> {
+/**
+ * Used to publish artifacts to Nexus Repository [For open Source Projects]
+ * */
+class OSSNexusPublicationPlugin : Plugin<Project> {
+
     override fun apply(target: Project) {
-        with(target) {
-            pluginManager.apply("org.graalvm.buildtools.native")
+        with(target.plugins) {
+            apply("io.github.gradle-nexus.publish-plugin")
+        }
 
-            tasks.register("native-build") {
-                tasks.findByName("nativeCompile")?.run {
-                    dependsOn(this)
+        target.configure<NexusPublishExtension> {
+            repositories {
+                sonatype {
+                    nexusUrl.set(URI.create("https://s01.oss.sonatype.org/service/local/"))
+                    username.set(System.getenv("OSSRH_USER"))
+                    password.set(System.getenv("OSSRH_KEY"))
                 }
             }
         }

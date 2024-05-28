@@ -13,12 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.mkh.gradle
+package com.github.khalid64927.gradle
 
-import com.mkh.gradle.publish.OSSNexusPublicationPlugin
-import com.mkh.gradle.publish.OSSPublicationPlugin
-import com.mkh.gradle.utils.isNative
-import com.mkh.gradle.utils.validateRequiredProperties
+import com.github.khalid64927.gradle.publish.OSSNexusPublicationPlugin
+import com.github.khalid64927.gradle.publish.OSSPublicationPlugin
+import com.github.khalid64927.gradle.utils.isNative
+import com.github.khalid64927.gradle.utils.validateRequiredProperties
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.plugins.quality.Checkstyle
@@ -35,7 +35,7 @@ class MKHMicroservicePlugin : Plugin<Project> {
                 apply(SpringBootPlugin::class.java)
                 apply(SpotlessPlugin::class.java)
                 apply(DetektPlugin::class.java)
-                apply(CPDPlugin::class.java)
+                apply(com.github.khalid64927.gradle.CPDPlugin::class.java)
                 apply(Checkstyle::class.java)
                 apply(SpotbugsPlugin::class.java)
                 apply(OSSScanPlugin::class.java)

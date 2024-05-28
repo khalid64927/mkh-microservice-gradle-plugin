@@ -13,12 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.mkh.gradle.utils
+package com.github.khalid64927.gradle
 
+import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.api.artifacts.VersionCatalog
-import org.gradle.api.artifacts.VersionCatalogsExtension
-import org.gradle.kotlin.dsl.getByType
 
-val Project.libs
-    get(): VersionCatalog = extensions.getByType<VersionCatalogsExtension>().named("libs")
+class GraalVMPlugin : Plugin<Project> {
+    override fun apply(target: Project) {
+        with(target) {
+            pluginManager.apply("org.graalvm.buildtools.native")
+
+            tasks.register("native-build") {
+                tasks.findByName("nativeCompile")?.run {
+                    dependsOn(this)
+                }
+            }
+        }
+    }
+}

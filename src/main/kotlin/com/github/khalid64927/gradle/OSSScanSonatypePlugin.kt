@@ -13,31 +13,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.mkh.gradle
+package com.github.khalid64927.gradle
 
+import com.github.khalid64927.gradle.utils.requiredStringProperty
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
-import org.gradle.testing.jacoco.plugins.JacocoPluginExtension
-import org.gradle.testing.jacoco.tasks.JacocoReport
+import org.sonatype.gradle.plugins.scan.nexus.iq.scan.NexusIqPluginScanExtension
 
-class JacocoPlugin : Plugin<Project> {
+class OSSScanSonatypePlugin : Plugin<Project> {
 
     override fun apply(target: Project) {
         with(target) {
-            pluginManager.apply("jacoco")
-            configure<JacocoPluginExtension> {
-                toolVersion = "0.8.7"
-            }
-            configure<JacocoReport> {
-                dependsOn(tasks.named("test"))
-                reports {
-                    xml.required.set(true)
-                    html.required.set(true)
-                }
-            }
-            tasks.matching { it.name == "test" }.configureEach {
-                finalizedBy("jacocoTestReport")
+            pluginManager.apply("org.sonatype.gradle.plugins.scan")
+            val nexusAppId = requiredStringProperty("nexus.applicationId")
+            val nexusUrl = requiredStringProperty("nexus.IQUrl")
+            val nexusUsername = requiredStringProperty("nexusUsername")
+            val nexusPassword = requiredStringProperty("nexusPassword")
+
+            configure<NexusIqPluginScanExtension> {
+                serverUrl = nexusUrl
+                username = nexusUsername
+                password = nexusPassword
+                applicationId = nexusAppId
             }
         }
     }
