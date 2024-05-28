@@ -1,0 +1,38 @@
+[versions]
+gradlePluginVersion = "0.1.0"
+jacocoVersion = "0.8.7"
+spotlessVersion = "6.23.3"
+kotlinDslVersion = "4.3.0"
+kotlinVersion = "1.9.24"
+detektVersion = "1.22.0"
+nexusPublishVersion = "1.1.0"
+sonarVersion = "5.0.0.4638"
+cpdPluginVersion = "3.3"
+benmanesVersion = "0.42.0"
+depCheckVersion = "9.2.0"
+spotbugsVersion = "6.0.15"
+barfuinLogVersion = "3.1.0"
+scanGradleVersion = "2.8.2"
+springBootVersion = "3.2.6"
+graalVMVersion = "0.10.2"
+commons-collections = "4.4"
+
+[libraries]
+kotlinGradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlinVersion" }
+kotlinDslPlugin = { module = "org.gradle.kotlin.kotlin-dsl:org.gradle.kotlin.kotlin-dsl.gradle.plugin", version.ref = "kotlinDslVersion"}
+detektGradlePlugin = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version.ref = "detektVersion" }
+nexusPublishGradlePlugin = { module = "io.github.gradle-nexus:publish-plugin", version.ref = "nexusPublishVersion" }
+sonarGradlePlugin = { module = "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin", version.ref = "sonarVersion" }
+jacocoGradlePlugin = { module = "org.jacoco:org.jacoco.core", version.ref = "jacocoVersion" }
+spotlessGradlePlugin = { module = "com.diffplug.spotless:spotless-plugin-gradle", version.ref = "spotlessVersion"}
+cpdGradlePlugin = { module = "de.aaschmid:gradle-cpd-plugin", version.ref = "cpdPluginVersion"}
+benManesGradlePlugin = { module = "com.github.ben-manes:gradle-versions-plugin", version.ref = "benmanesVersion"}
+depCheckGradlePlugin = { module = "org.owasp:dependency-check-gradle", version.ref = "depCheckVersion"}
+spotbugsGradlePlugin = { module = "com.github.spotbugs.snom:spotbugs-gradle-plugin", version.ref = "spotbugsVersion"}
+barfuinGradlePlugin = { module = "org.barfuin.gradle.jacocolog:gradle-jacoco-log", version.ref = "barfuinLogVersion"}
+scanGradlePlugin = { module = "org.sonatype.gradle.plugins:scan-gradle-plugin", version.ref = "scanGradleVersion" }
+springBootGradlePlugin = { module = "org.springframework.boot:spring-boot-gradle-plugin", version.ref = "springBootVersion"}
+graalVMGradlePlugin = { module = "org.graalvm.buildtools.native:org.graalvm.buildtools.native.gradle.plugin", version.ref = "graalVMVersion" }
+commonsCollections = { group = "commons-collections", name = "commons-collections", version.ref = "commons-collections" }
+
+
